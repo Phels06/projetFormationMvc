@@ -22,61 +22,55 @@
 </head>
 <body>
 	<div class="container">
-<%-- 		<jsp:include page="../langue.jsp"></jsp:include> --%>
+		<jsp:include page="../langue.jsp"></jsp:include>
 		<h1>
-<%-- 			<spring:message code="annonce.list.titre"></spring:message> --%>
+			<spring:message code="annonce.list.titre"></spring:message>
 		</h1>
 		<table class="table">
 			<tr>
-				<td>id</td>
-				<td>date</td>
-				<td>note</td>
-				<td>nbChien</td>
-				<td>nbHeures</td>
-				<td>prixIRT</td>
-				<td>taxe</td>
-				<td>prixTotal</td>
-				<td></td>
-				<td></td>
-<!-- 			</tr> -->
-<%-- 			<c:forEach var="p" items="${personnes}"> --%>
-<!-- 				<tr> -->
-<%-- 					<td><c:choose> --%>
-<%-- 							<c:when --%>
-<%-- 								test="${p.getClass().name == 'formationJpaSpring.entity.Formateur' }">formateur</c:when> --%>
-<%-- 							<c:otherwise>stagiaire</c:otherwise> --%>
-<%-- 						</c:choose></td> --%>
-<%-- 					<td>${p.id}</td> --%>
-<%-- 					<td>${p.civilite.label}</td> --%>
-<%-- 					<td>${p.prenom}</td> --%>
-<%-- 					<td>${p.nom}</td> --%>
-<%-- 					<td>${p.adresse.numero}&nbsp;${p.adresse.rue}</td> --%>
-<%-- 					<td>${p.adresse.codePostal}</td> --%>
-<%-- 					<td>${p.adresse.ville}</td> --%>
-<%-- 					<td><c:if test="${p.getClass().simpleName == 'Formateur'}"> --%>
-<%-- 					${p.experience}</c:if></td> --%>
-<%-- 					<c:forEach var="c" items="${p.competences}"> --%>
-<%-- 					<td><c:if test="${p.getClass().simpleName == 'Formateur'}"> --%>
-<%-- 					${p.c.competencePK.matiere}</c:if></td> --%>
-<%-- 					<td><c:if test="${p.getClass().simpleName == 'Formateur'}"> --%>
-<%-- 					${p.c.niveau}</c:if></td> --%>
-<%-- 					</c:forEach> --%>
-<%-- 					<td><a href="${ctx}/personne/edit?id=${p.id}" --%>
-<!-- 						class="btn btn-outline-info">editer</a></td> -->
-<%-- 					<td><a href="${ctx}/personne/delete?id=${p.id}" --%>
-<!-- 						class="btn -->
-<!-- 						btn-outline-danger">supprimer</a></td> -->
-<!-- 				</tr> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</table> -->
-<!-- 		<div class="btn-group"> -->
-<%-- 			<a href="${ctx}/personne/formateur" class="btn btn-outline-info">ajout --%>
-<%-- 				formateur</a> <a href="${ctx}/personne/stagiaire" --%>
-<!-- 				class="btn btn-outline-info">ajout stagiaire</a> -->
-<!-- 		</div> -->
+				<td>annonce.list.id</td>
+				<td>annonce.list.dateAnnonce</td>
+				<td>annonce.list.note</td>
+				<td>annonce.list.nbChiens</td>
+				<td>annonce.list.nbHeures</td>
+				<td>annonce.list.prixIRTchienIRTheure</td>
+				<td>annonce.list.taxes</td>
+				<td>annonce.list.prixTotal</td>
+				<td>annonce.list.maitre</td>
+				<td>annonce.list.promeneur</td>
+			</tr>
+			<c:forEach var="annonce" items="${annonces}">
+				<tr>
+					<td>${annonce.id}</td>
+					<td>${annonce.dateAnnonce}</td>
+					<td>${annonce.note}</td>
+					<td>${annonce.tarif.nbChiens}</td>
+					<td>${annonce.tarif.nbHeures}</td>
+					<td>${annonce.tarif.prixIRTchienIRTheure}</td>
+					<td>${annonce.tarif.taxes}</td>
+					<td>${annonce.tarif.prixTotal}</td>
+					<td>${annonce.maitre}</td>
+					<td>${annonce.promeneur}</td>
+					<td><a href="${ctx}/annonce/edit?id=${annnonce.id}"
+						class="btn btn-outline-info">editer</a></td>
+					<td><a href="${ctx}/annonce/delete?id=${p.id}"
+						class="btn
+						btn-outline-danger">supprimer</a></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<div class="btn-group">
+			<a href="${ctx}/annonce/add" class="btn btn-outline-info">ajout
+				annonce</a>
+		</div>
 
 
 
 	</div>
+</body>
+</html>
+
+
+</div>
 </body>
 </html>

@@ -56,13 +56,7 @@
 					<td>${p.adresse.ville}</td>
 					<td><c:if test="${p.getClass().simpleName == 'Formateur'}">
 					${p.experience}</c:if></td>
-					<c:forEach var="c" items="${p.competences}">
-					<td><c:if test="${p.getClass().simpleName == 'Formateur'}">
-					${p.c.competencePK.matiere}</c:if></td>
-					<td><c:if test="${p.getClass().simpleName == 'Formateur'}">
-					${p.c.niveau}</c:if></td>
-					</c:forEach>
-					<td><a href="${ctx}/personne/edit?id=${p.id}"
+					<td><a href="${ctx}/personne/edit?id=${p.id}&type=${p.getClass().simpleName}"
 						class="btn btn-outline-info">editer</a></td>
 					<td><a href="${ctx}/personne/delete?id=${p.id}"
 						class="btn
