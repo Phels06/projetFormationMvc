@@ -31,7 +31,7 @@
 				<c:url var="action" value="/personne/save/stagiaire"></c:url>
 			</c:otherwise>
 		</c:choose>
-		<form:form action="${action}" method="get" modelAttribute="p">
+		<form:form action="${action}" method="post" modelAttribute="p">
 			<form:hidden path="version" />
 			<div class="form-group">
 				<form:label path="id">id:</form:label>
@@ -77,14 +77,14 @@
 						<form:input path="experience" cssClass="form-control" />
 					</div>
 					<div class="form-group">
-						<form:label path="matiere">matiere:</form:label>
-						<form:select path="matiere.id" cssClass="form-control">
-						<form:options items="${matieres}" itemValue="id" itemLabel="nom"/>
-						</form:select>
-					</div>
-					<div class="form-group">
-						<form:label path="niveau">niveau:</form:label>
-						<form:input path="niveau" cssClass="form-control" />
+						<div>competences:</div>
+						<c:forEach var="c" items="${p.competences}">
+							<div>${c.id.matiere.nom}&nbsp;${c.niveau}</div>
+						</c:forEach>
+						<c:if test="${p.id != null }">
+							<a href="${ctx}/personne/competence/add?id=${p.id}"
+								class="btn btn-outline-info">nouvelle competences</a>
+						</c:if>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -92,7 +92,8 @@
 						<form:label path="formation">formation</form:label>
 						<form:select path="formation.id" cssClass="form-control">
 							<form:option value="">pas de formation</form:option>
-							<form:options items="${formations}" itemValue="id" itemLabel="infos"/>
+							<form:options items="${formations}" itemValue="id"
+								itemLabel="infos" />
 						</form:select>
 					</div>
 				</c:otherwise>

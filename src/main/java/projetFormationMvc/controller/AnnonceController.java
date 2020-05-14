@@ -29,6 +29,11 @@ public class AnnonceController {
 		return modelAndView;
 	}
 	
+	@GetMapping("/add")
+	public ModelAndView addAnnonce() {
+		return goEdit(new Annonce());
+	}
+	
 	@GetMapping("/edit")
 	public ModelAndView edit(@RequestParam Integer id) {
 		Annonce annonce = annonceService.recherche(id);
@@ -51,11 +56,9 @@ public class AnnonceController {
 
 	@GetMapping("/save")
 	public ModelAndView saveAnnonce(@Valid @ModelAttribute("annonce") Annonce annonce, BindingResult br) {
-//		PostulerKey postulerKey = new PostulerKey(maitre, annonce);
-//		Competence competence = new Competence(competencePK, niveau);
-//		Set<Competence> competences = formateur.getCompetences();
-//		competences.add(competence);
-//		formateur.setCompetences(competences);
+//		if (stagiaire.getFormation() != null && stagiaire.getFormation().getId() == null) {
+//			stagiaire.setFormation(null);
+//		}
 		return save(annonce, br);
 	}
 
@@ -64,6 +67,28 @@ public class AnnonceController {
 			return goEdit(annonce);
 		}
 		annonceService.ajout(annonce);
-		return new ModelAndView("redirect:");
+		return new ModelAndView("redirect:/annonce");
 	}
+//
+//	@GetMapping("/competence/add")
+//	public ModelAndView addCompetence(@RequestParam Integer id) {
+//		ModelAndView modelAndView = new ModelAndView("personne/competences");
+//		modelAndView.addObject("matieres", matiereRepository.findMatieresNonAffectes(id));
+//
+//		Competence competence = new Competence();
+//		CompetencePK competenceId = new CompetencePK();
+//		competenceId.setFormateur((Formateur) personneRepository.findByIdWithCompetences(id).get());
+//		competence.setId(competenceId);
+//		modelAndView.addObject("competence", competence);
+//		return modelAndView;
+//	}
+//
+//	@PostMapping("/competence/add")
+//	public ModelAndView saveCompetence(@ModelAttribute("competence") Competence competence) {
+//		competenceRepository.save(competence);
+//		return new ModelAndView("redirect:/personne/competence/add?id=" + competence.getId().getFormateur().getId());
+//	}
+//
+//}
+
 }
