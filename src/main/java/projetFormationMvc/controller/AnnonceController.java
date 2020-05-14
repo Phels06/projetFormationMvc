@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,14 +22,14 @@ public class AnnonceController {
 	@Autowired
 	private AnnonceService annonceService;
 
-	@PostMapping(value = { "", "/" })
+	@GetMapping(value = { "", "/" })
 	public ModelAndView list() {
 		ModelAndView modelAndView = new ModelAndView("annonce/list");
 		modelAndView.addObject("annonces", annonceService.rechercheTous());
 		return modelAndView;
 	}
 	
-	@PostMapping("/edit")
+	@GetMapping("/edit")
 	public ModelAndView edit(@RequestParam Integer id) {
 		Annonce annonce = annonceService.recherche(id);
 		return goEdit(annonce);
@@ -43,13 +43,13 @@ public class AnnonceController {
 		return modelAndView;
 	}
 	
-	@PostMapping("/delete")
+	@GetMapping("/delete")
 	public ModelAndView delete(@RequestParam Integer id) {
 		annonceService.supprimerParId(id);
 		return new ModelAndView("redirect:/annonce");
 	}
 
-	@PostMapping("/save")
+	@GetMapping("/save")
 	public ModelAndView saveAnnonce(@Valid @ModelAttribute("annonce") Annonce annonce, BindingResult br) {
 //		PostulerKey postulerKey = new PostulerKey(maitre, annonce);
 //		Competence competence = new Competence(competencePK, niveau);

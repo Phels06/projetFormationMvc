@@ -22,9 +22,9 @@
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="../langue.jsp"></jsp:include>
+<%-- 		<jsp:include page="../langue.jsp"></jsp:include> --%>
 		<h1>
-			<spring:message code="annonce.list.titre"></spring:message>
+<%-- 			<spring:message code="annonce.list.titre"></spring:message> --%>
 		</h1>
 		<table class="table">
 			<tr>
